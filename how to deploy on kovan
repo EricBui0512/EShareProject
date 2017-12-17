@@ -1,0 +1,12 @@
+1. parity --geth --chain kovan --force-ui --reseal-min-period 0 --jsonrpc-cors http://localhost
+
+2. parity ui
+
+
+
+3. truffle migrate --network kovan / --reset
+
+// deploy by geth command
+4. geth attach
+
+generate bin and abi form

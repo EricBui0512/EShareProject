@@ -1,0 +1,951 @@
+{
+  "contract_name": "BikeCoinNetWork",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "reserve",
+          "type": "address"
+        },
+        {
+          "name": "source",
+          "type": "address"
+        },
+        {
+          "name": "dest",
+          "type": "address"
+        },
+        {
+          "name": "add",
+          "type": "bool"
+        }
+      ],
+      "name": "listPairForReserve",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newAddress",
+          "type": "address"
+        }
+      ],
+      "name": "upgrade",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getReserves",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "ETH_TOKEN_ADDRESS",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "reserves",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "address"
+        },
+        {
+          "name": "srcAmount",
+          "type": "uint256"
+        },
+        {
+          "name": "dest",
+          "type": "address"
+        },
+        {
+          "name": "destAddress",
+          "type": "address"
+        },
+        {
+          "name": "maxDestAmount",
+          "type": "uint256"
+        },
+        {
+          "name": "minConversionRate",
+          "type": "uint256"
+        },
+        {
+          "name": "throwOnFailure",
+          "type": "bool"
+        }
+      ],
+      "name": "trade",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "reserve",
+          "type": "address"
+        },
+        {
+          "name": "add",
+          "type": "bool"
+        }
+      ],
+      "name": "addReserve",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getNumReserves",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "address"
+        },
+        {
+          "name": "dest",
+          "type": "address"
+        },
+        {
+          "name": "reserveIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "getRate",
+      "outputs": [
+        {
+          "name": "rate",
+          "type": "uint256"
+        },
+        {
+          "name": "expBlock",
+          "type": "uint256"
+        },
+        {
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_admin",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "origin",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "error",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "errorInfo",
+          "type": "uint256"
+        }
+      ],
+      "name": "ErrorReport",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "source",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "dest",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "actualSrcAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "actualDestAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Trade",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "reserve",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "add",
+          "type": "bool"
+        }
+      ],
+      "name": "AddReserve",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "reserve",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "source",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "dest",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "add",
+          "type": "bool"
+        }
+      ],
+      "name": "ListPairsForReserve",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b6040516020806114d5833981016040528080519150505b60008054600160a060020a031916600160a060020a0383161790555b505b611482806100536000396000f300606060405236156100885763ffffffff60e060020a60003504166303141fcd811461008d5780630900f010146100bf5780630902f1ac146100e05780631878d1f1146101475780638334278d1461017657806393766a57146101a8578063a0d7bb1b146101e9578063cfff25bb1461020f578063e56c174b14610234578063f8b2cb4f14610280575b600080fd5b341561009857600080fd5b6100bd600160a060020a036004358116906024358116906044351660643515156102b1565b005b34156100ca57600080fd5b6100bd600160a060020a0360043516610088565b005b34156100eb57600080fd5b6100f3610420565b60405160208082528190810183818151815260200191508051906020019060200280838360005b838110156101335780820151818401525b60200161011a565b505050509050019250505060405180910390f35b341561015257600080fd5b61015a610489565b604051600160a060020a03909116815260200160405180910390f35b341561018157600080fd5b61015a6004356104a1565b604051600160a060020a03909116815260200160405180910390f35b6101d7600160a060020a03600435811690602435906044358116906064351660843560a43560c43515156104d3565b60405190815260200160405180910390f35b34156101f457600080fd5b6100bd600160a060020a036004351660243515156108a6565b005b341561021a57600080fd5b6101d7610af7565b60405190815260200160405180910390f35b341561023f57600080fd5b61025c600160a060020a0360043581169060243516604435610afe565b60405180848152602001838152602001828152602001935050505060405180910390f35b341561028b57600080fd5b6101d7600160a060020a0360043516610bc9565b60405190815260200160405180910390f35b60005433600160a060020a039081169116146103035733600160a060020a03166000805160206114378339815191526388000000600060405191825260208201526040908101905180910390a2610412565b600160a060020a0384166000908152600260205260408082208392909186908690516c01000000000000000000000000600160a060020a03938416810282529190921602601482015260280160405180910390206000191660001916815260200190815260200160002060006101000a81548160ff0219169083151502179055507ffec320f49e655894166933e8c35f01cdb484dc623f4fb53441633fbedb78dba884848484604051600160a060020a039485168152928416602084015292166040808301919091529115156060820152608001905180910390a132600160a060020a031660008051602061143783398151915260008060405191825260208201526040908101905180910390a25b50505050565b600080fd5b50565b61042861136f565b600180548060200260200160405190810160405280929190818152602001828054801561047e57602002820191906000526020600020905b8154600160a060020a03168152600190910190602001808311610460575b505050505090505b90565b73eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee81565b60018054829081106104af57fe5b906000526020600020900160005b915054906101000a9004600160a060020a031681565b60006104dd611381565b6104e5611381565b6000806104f28c8c610c7b565b151561057f5732600160a060020a03166000805160206114378339815191526386000000600060405191825260208201526040908101905180910390a2600034111561056a57600160a060020a0333163480156108fc0290604051600060405180830381858888f19350505050151561056a57600080fd5b5b851561057657600080fd5b60009450610896565b606060405190810160409081526000808352602083018e90529082015293505b876103e88551011080156105b857506103e88460200151115b156106fa576105c78c8b610e4d565b9250825115806105d75750868351105b156106225760016040850152600160a060020a0332166000805160206114378339815191526386000001602087015160405191825260208201526040908101905180910390a26106fa565b83602001519150670de0b6b3a76400008351830281151561063f57fe5b049050826020015181111561065657826020015190505b87845182011115610668578351880390505b8251670de0b6b3a7640000820281151561067e57fe5b0491506106948c838c8c87604001516001610fc4565b15156106e05760016040850152600160a060020a0332166000805160206114378339815191526386000002602087015160405191825260208201526040908101905180910390a26106fa565b81846020018181510390525080848181510190525061059f565b83604001511561075457851561070f57600080fd5b600034111561057657600160a060020a0333163480156108fc0290604051600060405180830381858888f19350505050151561057657600080fd5b5b60009450610896565b32600160a060020a031660008051602061143783398151915260008060405191825260208201526040908101905180910390a2600084602001511180156107b75750600160a060020a038c1673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee145b156107f35733600160a060020a03166108fc85602001519081150290604051600060405180830381858888f1935050505015156107f357600080fd5b5b32600160a060020a031660008051602061143783398151915260008060405191825260208201526040908101905180910390a233600160a060020a03167fec0d3e799aa270a144d7e3be084ccfc657450e33ecea1b1a4154c95cedaae5c38d8c87602001518f038851604051600160a060020a0394851681529290931660208301526040808301919091526060820192909252608001905180910390a2835194505b5b50505050979650505050505050565b6000805433600160a060020a039081169116146108f95733600160a060020a03166000805160206114378339815191526387000000600060405191825260208201526040908101905180910390a2610af2565b8115610989576001805480820161091083826113c1565b916000526020600020900160005b8154600160a060020a038088166101009390930a92830292021916179055507f7fb71e76e724c32dea5a20b853f4e3a5878fde6e20ced9c2d40ec3257cb49416836001604051600160a060020a039092168252151560208201526040908101905180910390a1610abd565b5060005b600154811015610abd5782600160a060020a03166001828154811015156109b057fe5b906000526020600020900160005b9054906101000a9004600160a060020a0316600160a060020a03161415610ab45760015415156109ed57610af2565b60018054600019016109ff82826113c1565b81548110610a0957fe5b906000526020600020900160005b9054906101000a9004600160a060020a0316600182815481101515610a3857fe5b906000526020600020900160005b6101000a815481600160a060020a030219169083600160a060020a031602179055507f7fb71e76e724c32dea5a20b853f4e3a5878fde6e20ced9c2d40ec3257cb49416836000604051600160a060020a039092168252151560208201526040908101905180910390a1610abd565b5b60010161098d565b5b33600160a060020a031660008051602061143783398151915260008060405191825260208201526040908101905180910390a25b505050565b6001545b90565b6000806000600184815481101515610b1257fe5b906000526020600020900160005b9054906101000a9004600160a060020a0316600160a060020a031663400f7a1e878760006040516060015260405160e060020a63ffffffff8516028152600160a060020a03928316600482015291166024820152604401606060405180830381600087803b1515610b9057600080fd5b6102c65a03f11515610ba157600080fd5b5050506040518051906020018051906020018051929550909350909150505b93509350939050565b6000600160a060020a03821673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee1415610c015750600160a060020a03301631610c75565b81600160a060020a03166370a082313060006040516020015260405160e060020a63ffffffff8416028152600160a060020a039091166004820152602401602060405180830381600087803b1515610c5857600080fd5b6102c65a03f11515610c6957600080fd5b50505060405180519150505b5b919050565b6000600160a060020a03831673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee14801590610caa5750600034115b15610cee5732600160a060020a03166000805160206114378339815191526385000000600060405191825260208201526040908101905180910390a2506000610e47565b600160a060020a03831673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee148015610d1a5750813414155b15610d5d5732600160a060020a031660008051602061143783398151915263850000013460405191825260208201526040908101905180910390a2506000610e47565b600160a060020a03831673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee14610e40578183600160a060020a031663dd62ed3e333060006040516020015260405160e060020a63ffffffff8516028152600160a060020a03928316600482015291166024820152604401602060405180830381600087803b1515610de157600080fd5b6102c65a03f11515610df257600080fd5b505050604051805190501015610e405732600160a060020a031660008051602061143783398151915263850000023460405191825260208201526040908101905180910390a2506000610e47565b5b5b5b5060015b92915050565b610e55611381565b6000806000610e62611381565b60015460009350915082808080805b86841015610f96576001805485908110610e8757fe5b906000526020600020900160005b9054906101000a9004600160a060020a0316600160a060020a031663400f7a1e8d8d60006040516060015260405160e060020a63ffffffff8516028152600160a060020a03928316600482015291166024820152604401606060405180830381600087803b1515610f0557600080fd5b6102c65a03f11515610f1657600080fd5b50505060405180519060200180519060200180519050925092509250438210158015610f425750600081115b8015610f4d57508883115b15610f8a57829850809750600184815481101515610f6757fe5b906000526020600020900160005b9054906101000a9004600160a060020a031694505b5b600190930192610e71565b88865260208601889052600160a060020a038516604087015294985088945b50505050505050505092915050565b600080600160a060020a03881673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee1415610ff35750856110f1565b87600160a060020a03166323b872dd33308a60006040516020015260405160e060020a63ffffffff8616028152600160a060020a0393841660048201529190921660248201526044810191909152606401602060405180830381600087803b151561105d57600080fd5b6102c65a03f1151561106e57600080fd5b50505060405180515050600160a060020a03881663095ea7b3858960006040516020015260405160e060020a63ffffffff8516028152600160a060020a0390921660048301526024820152604401602060405180830381600087803b15156110d557600080fd5b6102c65a03f115156110e657600080fd5b505050604051805150505b83600160a060020a0316630363b1e1828a8a8a8a8960006040516020015260405160e060020a63ffffffff8916028152600160a060020a039586166004820152602481019490945291841660448401529092166064820152901515608482015260a4016020604051808303818588803b151561116c57600080fd5b6125ee5a03f1151561117d57600080fd5b505050506040518051905015156112c257600160a060020a03881673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee146112b85787600160a060020a031663095ea7b3856000806040516020015260405160e060020a63ffffffff8516028152600160a060020a0390921660048301526024820152604401602060405180830381600087803b151561120f57600080fd5b6102c65a03f1151561122057600080fd5b50505060405180519050151561123557600080fd5b87600160a060020a031663a9059cbb338960006040516020015260405160e060020a63ffffffff8516028152600160a060020a0390921660048301526024820152604401602060405180830381600087803b151561129257600080fd5b6102c65a03f115156112a357600080fd5b5050506040518051905015156112b857600080fd5b5b60009150611364565b600160a060020a03881673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee1461135f5787600160a060020a031663095ea7b3856000806040516020015260405160e060020a63ffffffff8516028152600160a060020a0390921660048301526024820152604401602060405180830381600087803b151561134357600080fd5b6102c65a03f1151561135457600080fd5b505050604051805150505b600191505b509695505050505050565b60206040519081016040526000815290565b606060405190810160409081526000808352602083018190529082015290565b606060405190810160409081526000808352602083018190529082015290565b815481835581811511610af257600083815260209020610af2918101908301611415565b5b505050565b815481835581811511610af257600083815260209020610af2918101908301611415565b5b505050565b61048691905b8082111561142f576000815560010161141b565b5090565b90560005d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36fa165627a7a723058208c2da04e17091fef889359dd7702973c3e12b7439898db6e1c5c9c2d759347c20029",
+  "networks": {
+    "42": {
+      "events": {
+        "0x05d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "error",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "errorInfo",
+              "type": "uint256"
+            }
+          ],
+          "name": "ErrorReport",
+          "type": "event"
+        },
+        "0xec0d3e799aa270a144d7e3be084ccfc657450e33ecea1b1a4154c95cedaae5c3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "actualSrcAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "actualDestAmount",
+              "type": "uint256"
+            }
+          ],
+          "name": "Trade",
+          "type": "event"
+        },
+        "0x7fb71e76e724c32dea5a20b853f4e3a5878fde6e20ced9c2d40ec3257cb49416": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "reserve",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "add",
+              "type": "bool"
+            }
+          ],
+          "name": "AddReserve",
+          "type": "event"
+        },
+        "0xfec320f49e655894166933e8c35f01cdb484dc623f4fb53441633fbedb78dba8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "reserve",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "add",
+              "type": "bool"
+            }
+          ],
+          "name": "ListPairsForReserve",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xfa379ffb7f561b17783142084131ea90cb01bc65",
+      "updated_at": 1509960540515
+    },
+    "1508646405752": {
+      "events": {
+        "0x05d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "error",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "errorInfo",
+              "type": "uint256"
+            }
+          ],
+          "name": "ErrorReport",
+          "type": "event"
+        },
+        "0xec0d3e799aa270a144d7e3be084ccfc657450e33ecea1b1a4154c95cedaae5c3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "actualSrcAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "actualDestAmount",
+              "type": "uint256"
+            }
+          ],
+          "name": "Trade",
+          "type": "event"
+        },
+        "0x7fb71e76e724c32dea5a20b853f4e3a5878fde6e20ced9c2d40ec3257cb49416": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "reserve",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "add",
+              "type": "bool"
+            }
+          ],
+          "name": "AddReserve",
+          "type": "event"
+        },
+        "0xfec320f49e655894166933e8c35f01cdb484dc623f4fb53441633fbedb78dba8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "reserve",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "add",
+              "type": "bool"
+            }
+          ],
+          "name": "ListPairsForReserve",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xa01d22fbf584b019e7322e689f5d9fc31b924432",
+      "updated_at": 1508647868219
+    },
+    "1508992195467": {
+      "events": {
+        "0x05d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "error",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "errorInfo",
+              "type": "uint256"
+            }
+          ],
+          "name": "ErrorReport",
+          "type": "event"
+        },
+        "0xec0d3e799aa270a144d7e3be084ccfc657450e33ecea1b1a4154c95cedaae5c3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "actualSrcAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "actualDestAmount",
+              "type": "uint256"
+            }
+          ],
+          "name": "Trade",
+          "type": "event"
+        },
+        "0x7fb71e76e724c32dea5a20b853f4e3a5878fde6e20ced9c2d40ec3257cb49416": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "reserve",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "add",
+              "type": "bool"
+            }
+          ],
+          "name": "AddReserve",
+          "type": "event"
+        },
+        "0xfec320f49e655894166933e8c35f01cdb484dc623f4fb53441633fbedb78dba8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "reserve",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "add",
+              "type": "bool"
+            }
+          ],
+          "name": "ListPairsForReserve",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xf5fa641b44855362d38d00329e33cc5e9827ab58",
+      "updated_at": 1509027070789
+    },
+    "1509029919280": {
+      "links": {},
+      "events": {
+        "0x05d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "error",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "errorInfo",
+              "type": "uint256"
+            }
+          ],
+          "name": "ErrorReport",
+          "type": "event"
+        },
+        "0xec0d3e799aa270a144d7e3be084ccfc657450e33ecea1b1a4154c95cedaae5c3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "actualSrcAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "actualDestAmount",
+              "type": "uint256"
+            }
+          ],
+          "name": "Trade",
+          "type": "event"
+        },
+        "0x7fb71e76e724c32dea5a20b853f4e3a5878fde6e20ced9c2d40ec3257cb49416": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "reserve",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "add",
+              "type": "bool"
+            }
+          ],
+          "name": "AddReserve",
+          "type": "event"
+        },
+        "0xfec320f49e655894166933e8c35f01cdb484dc623f4fb53441633fbedb78dba8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "reserve",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "add",
+              "type": "bool"
+            }
+          ],
+          "name": "ListPairsForReserve",
+          "type": "event"
+        }
+      },
+      "updated_at": 1509030171072
+    },
+    "1509351012249": {
+      "links": {},
+      "events": {
+        "0x05d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "error",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "errorInfo",
+              "type": "uint256"
+            }
+          ],
+          "name": "ErrorReport",
+          "type": "event"
+        },
+        "0xec0d3e799aa270a144d7e3be084ccfc657450e33ecea1b1a4154c95cedaae5c3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "actualSrcAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "actualDestAmount",
+              "type": "uint256"
+            }
+          ],
+          "name": "Trade",
+          "type": "event"
+        },
+        "0x7fb71e76e724c32dea5a20b853f4e3a5878fde6e20ced9c2d40ec3257cb49416": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "reserve",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "add",
+              "type": "bool"
+            }
+          ],
+          "name": "AddReserve",
+          "type": "event"
+        },
+        "0xfec320f49e655894166933e8c35f01cdb484dc623f4fb53441633fbedb78dba8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "reserve",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "add",
+              "type": "bool"
+            }
+          ],
+          "name": "ListPairsForReserve",
+          "type": "event"
+        }
+      },
+      "updated_at": 1509363498036
+    },
+    "1510733929581": {
+      "links": {},
+      "events": {
+        "0x05d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "error",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "errorInfo",
+              "type": "uint256"
+            }
+          ],
+          "name": "ErrorReport",
+          "type": "event"
+        },
+        "0xec0d3e799aa270a144d7e3be084ccfc657450e33ecea1b1a4154c95cedaae5c3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "sender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "actualSrcAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "actualDestAmount",
+              "type": "uint256"
+            }
+          ],
+          "name": "Trade",
+          "type": "event"
+        },
+        "0x7fb71e76e724c32dea5a20b853f4e3a5878fde6e20ced9c2d40ec3257cb49416": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "reserve",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "add",
+              "type": "bool"
+            }
+          ],
+          "name": "AddReserve",
+          "type": "event"
+        },
+        "0xfec320f49e655894166933e8c35f01cdb484dc623f4fb53441633fbedb78dba8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "reserve",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "add",
+              "type": "bool"
+            }
+          ],
+          "name": "ListPairsForReserve",
+          "type": "event"
+        }
+      },
+      "updated_at": 1510739157423
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1510739157423
+}

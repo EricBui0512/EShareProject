@@ -1,0 +1,95 @@
+{
+  "contract_name": "Multiply7",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "input",
+          "type": "uint256"
+        }
+      ],
+      "name": "multiply",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "Print",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b5b60d08061001e6000396000f300606060405263ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663c6888fa18114603c575b600080fd5b3415604657600080fd5b604f6004356061565b60405190815260200160405180910390f35b60007f24abdb5865df5079dcc5ac590ff6f01d5c16edbc5fab4e195d9febd1114503da8260070260405190815260200160405180910390a150600781025b9190505600a165627a7a723058208add904ee37b1f67b37eb9c85764d1b87c7d35c2f0ebe2000d2c1c76a654f8eb0029",
+  "networks": {
+    "42": {
+      "events": {
+        "0x24abdb5865df5079dcc5ac590ff6f01d5c16edbc5fab4e195d9febd1114503da": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "Print",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xd041a65dd29a2c8fd763c42238deb9fb99db33b6",
+      "updated_at": 1509960540548
+    },
+    "1509351012249": {
+      "links": {},
+      "events": {
+        "0x24abdb5865df5079dcc5ac590ff6f01d5c16edbc5fab4e195d9febd1114503da": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "Print",
+          "type": "event"
+        }
+      },
+      "updated_at": 1509363498056
+    },
+    "1510733929581": {
+      "links": {},
+      "events": {
+        "0x24abdb5865df5079dcc5ac590ff6f01d5c16edbc5fab4e195d9febd1114503da": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "Print",
+          "type": "event"
+        }
+      },
+      "updated_at": 1510739157443
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1510739157443
+}

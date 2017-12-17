@@ -1,0 +1,224 @@
+{
+  "contract_name": "ManagedAccount",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_recipient",
+          "type": "address"
+        },
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "payOut",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "payOwnerOnly",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "accumulatedInput",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "name": "_payOwnerOnly",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "payable": true,
+      "type": "fallback"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "_recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "PayOut",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b6040516040806102d383398101604052808051919060200180519150505b60008054600160a060020a031916600160a060020a0384161760a060020a60ff02191674010000000000000000000000000000000000000000831515021790555b50505b610253806100806000396000f3006060604052361561005f5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630221038a811461006b57806318bdc79a146100965780638da5cb5b146100bd578063d2cc718f146100ec575b5b60018054340190555b005b610082600160a060020a0360043516602435610111565b604051901515815260200160405180910390f35b34156100a157600080fd5b6100826101f1565b604051901515815260200160405180910390f35b34156100c857600080fd5b6100d0610212565b604051600160a060020a03909116815260200160405180910390f35b34156100f757600080fd5b6100ff610221565b60405190815260200160405180910390f35b6000805433600160a060020a0390811691161415806101305750600034115b8061016e575060005474010000000000000000000000000000000000000000900460ff16801561016e5750600054600160a060020a03848116911614155b5b1561017957600080fd5b82600160a060020a03168260405160006040518083038185876187965a03f192505050156101e65782600160a060020a03167f9735b0cb909f3d21d5c16bbcccd272d85fa11446f6d679f6ecb170d2dabfecfc8360405190815260200160405180910390a25060016101ea565b5060005b5b92915050565b60005474010000000000000000000000000000000000000000900460ff1681565b600054600160a060020a031681565b600154815600a165627a7a72305820b9c0b67ed3bd5eba71f87f42770c277acf26284205e5ef632a88619a6316914d0029",
+  "networks": {
+    "42": {
+      "events": {
+        "0x9735b0cb909f3d21d5c16bbcccd272d85fa11446f6d679f6ecb170d2dabfecfc": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_recipient",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "PayOut",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x7b58c01826e775d1921fb80ff8249cb86c965918",
+      "updated_at": 1509960540532
+    },
+    "1508992195467": {
+      "events": {
+        "0x9735b0cb909f3d21d5c16bbcccd272d85fa11446f6d679f6ecb170d2dabfecfc": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_recipient",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "PayOut",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x2aac472590516aaa1dde2c33d693e076a5760a0b",
+      "updated_at": 1509027070796
+    },
+    "1509029919280": {
+      "events": {
+        "0x9735b0cb909f3d21d5c16bbcccd272d85fa11446f6d679f6ecb170d2dabfecfc": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_recipient",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "PayOut",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x20c94b670495c1ac288bb72383896b5376af6141",
+      "updated_at": 1509030171082
+    },
+    "1509351012249": {
+      "links": {},
+      "events": {
+        "0x9735b0cb909f3d21d5c16bbcccd272d85fa11446f6d679f6ecb170d2dabfecfc": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_recipient",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "PayOut",
+          "type": "event"
+        }
+      },
+      "updated_at": 1509363498053
+    },
+    "1510733929581": {
+      "links": {},
+      "events": {
+        "0x9735b0cb909f3d21d5c16bbcccd272d85fa11446f6d679f6ecb170d2dabfecfc": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_recipient",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "PayOut",
+          "type": "event"
+        }
+      },
+      "updated_at": 1510739157430
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1510739157430
+}

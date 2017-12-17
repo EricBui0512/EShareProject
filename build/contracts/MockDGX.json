@@ -1,0 +1,103 @@
+{
+  "contract_name": "MockDGX",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdrawEther",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "depositEther",
+      "outputs": [],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdrawToken",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "payable": true,
+      "type": "fallback"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b5b60008054600160a060020a03191633600160a060020a03161790555b5b6102178061003c6000396000f3006060604052361561005f5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633bed33ce81146100635780638da5cb5b1461007b57806398ea5fca146100aa5780639e281a98146100b4575b5b5b005b341561006e57600080fd5b61005f6004356100d8565b005b341561008657600080fd5b61008e610128565b604051600160a060020a03909116815260200160405180910390f35b61005f610137565b005b34156100bf57600080fd5b61005f600160a060020a036004351660243561013a565b005b60005432600160a060020a039081169116146100f357600080fd5b600160a060020a03331681156108fc0282604051600060405180830381858888f19350505050151561012457600080fd5b5b50565b600054600160a060020a031681565b5b565b60005432600160a060020a0390811691161461015557600080fd5b81600160a060020a031663a9059cbb33836000604051602001526040517c010000000000000000000000000000000000000000000000000000000063ffffffff8516028152600160a060020a0390921660048301526024820152604401602060405180830381600087803b15156101cb57600080fd5b6102c65a03f115156101dc57600080fd5b505050604051805150505b50505600a165627a7a72305820f913a0648a7a802a5d1c8b19c83df0ba1192c181c771d4b69d8d6d1e20d003450029",
+  "networks": {
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0xd048c250d7db35b6cb03a17470e2d2266ce019a5",
+      "updated_at": 1509960540523
+    },
+    "1508646405752": {
+      "events": {},
+      "links": {},
+      "address": "0x299bc62bc87c6ae3bab694ad228395dc8c3752f9",
+      "updated_at": 1508647868223
+    },
+    "1508992195467": {
+      "events": {},
+      "links": {},
+      "address": "0x9b39df17baba930cab610aad3be50ccf93dedfe9",
+      "updated_at": 1509027070794
+    },
+    "1509029919280": {
+      "links": {},
+      "events": {},
+      "updated_at": 1509030171076
+    },
+    "1509351012249": {
+      "links": {},
+      "events": {},
+      "updated_at": 1509363498049
+    },
+    "1510733929581": {
+      "links": {},
+      "events": {},
+      "updated_at": 1510739157429
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1510739157429
+}

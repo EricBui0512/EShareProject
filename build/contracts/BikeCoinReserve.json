@@ -1,0 +1,1273 @@
+{
+  "contract_name": "BikeCoinReserve",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "sourceToken",
+          "type": "address"
+        },
+        {
+          "name": "sourceAmount",
+          "type": "uint256"
+        },
+        {
+          "name": "destToken",
+          "type": "address"
+        },
+        {
+          "name": "destAddress",
+          "type": "address"
+        },
+        {
+          "name": "validate",
+          "type": "bool"
+        }
+      ],
+      "name": "trade",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "ETH_TOKEN_ADDRESS",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "depositToken",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "address"
+        },
+        {
+          "name": "dest",
+          "type": "address"
+        }
+      ],
+      "name": "getPairInfo",
+      "outputs": [
+        {
+          "name": "rate",
+          "type": "uint256"
+        },
+        {
+          "name": "expBlock",
+          "type": "uint256"
+        },
+        {
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "name": "destination",
+          "type": "address"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "bikecoinNetwork",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "depositEther",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "enable",
+          "type": "bool"
+        }
+      ],
+      "name": "enableTrade",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "tradeEnabled",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "sources",
+          "type": "address[]"
+        },
+        {
+          "name": "dests",
+          "type": "address[]"
+        },
+        {
+          "name": "conversionRates",
+          "type": "uint256[]"
+        },
+        {
+          "name": "expiryBlocks",
+          "type": "uint256[]"
+        },
+        {
+          "name": "validate",
+          "type": "bool"
+        }
+      ],
+      "name": "setRate",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "reserveOwner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_bikecoinNetwork",
+          "type": "address"
+        },
+        {
+          "name": "_reserveOwner",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "payable": true,
+      "type": "fallback"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "origin",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "error",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "errorInfo",
+          "type": "uint256"
+        }
+      ],
+      "name": "ErrorReport",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "origin",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "source",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "sourceAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "destToken",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "destAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "destAddress",
+          "type": "address"
+        }
+      ],
+      "name": "DoTrade",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "source",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "dest",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "rate",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "expiryBlock",
+          "type": "uint256"
+        }
+      ],
+      "name": "SetRate",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "enable",
+          "type": "bool"
+        }
+      ],
+      "name": "EnableTrade",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "DepositToken",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "destination",
+          "type": "address"
+        }
+      ],
+      "name": "Withdraw",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b604051604080611a3c83398101604052808051919060200180519150505b6001805460008054600160a060020a03858116600160a060020a03199283161790925560a060020a60ff021991861692169190911716740100000000000000000000000000000000000000001790555b50505b6119ad8061008f6000396000f3006060604052361561009e5763ffffffff60e060020a6000350416630363b1e181146100fa5780631878d1f114610137578063338b5dea14610166578063400f7a1e1461019c57806369328dec146101e5578063981db7771461022257806398ea5fca14610251578063c00f04d11461026d578063d621e81314610299578063da6dfea7146102c0578063e61b6557146103e7578063f8b2cb4f14610416575b5b7f2d0c0a8842b9944ece1495eb61121621b5e36bd6af3bba0318c695f525aef79f73eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee34604051600160a060020a03909216825260208201526040908101905180910390a15b005b610123600160a060020a0360043581169060243590604435811690606435166084351515610447565b604051901515815260200160405180910390f35b341561014257600080fd5b61014a610653565b604051600160a060020a03909116815260200160405180910390f35b341561017157600080fd5b610123600160a060020a036004351660243561066b565b604051901515815260200160405180910390f35b34156101a757600080fd5b6101c1600160a060020a03600435811690602435166108c7565b60405180848152602001838152602001828152602001935050505060405180910390f35b34156101f057600080fd5b610123600160a060020a0360043581169060243590604435166109ff565b604051901515815260200160405180910390f35b341561022d57600080fd5b61014a610c0f565b604051600160a060020a03909116815260200160405180910390f35b610123610c1e565b604051901515815260200160405180910390f35b341561027857600080fd5b6101236004351515610cb2565b604051901515815260200160405180910390f35b34156102a457600080fd5b610123610dbb565b604051901515815260200160405180910390f35b34156102cb57600080fd5b6101236004602481358181019083013580602081810201604051908101604052809392919081815260200183836020028082843782019150505050505091908035906020019082018035906020019080806020026020016040519081016040528093929190818152602001838360200280828437820191505050505050919080359060200190820180359060200190808060200260200160405190810160405280939291908181526020018383602002808284378201915050505050509190803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843750949650505050913515159150610ddc9050565b604051901515815260200160405180910390f35b34156103f257600080fd5b61014a611074565b604051600160a060020a03909116815260200160405180910390f35b341561042157600080fd5b610435600160a060020a0360043516611083565b60405190815260200160405180910390f35b60015460009074010000000000000000000000000000000000000000900460ff1615156104ea5732600160a060020a0316600080516020611962833981519152640810000000600060405191825260208201526040908101905180910390a260003411156104e157600160a060020a0333163480156108fc0290604051600060405180830381858888f1935050505015156104e157600080fd5b5b50600061064a565b60015433600160a060020a039081169116146105845732600160a060020a031660008051602061196283398151915264081000000133600160a060020a031660405191825260208201526040908101905180910390a260003411156104e157600160a060020a0333163480156108fc0290604051600060405180830381858888f1935050505015156104e157600080fd5b5b50600061064a565b610591868686868661113a565b15156106135732600160a060020a0316600080516020611962833981519152640810000002600060405191825260208201526040908101905180910390a260003411156104e157600160a060020a0333163480156108fc0290604051600060405180830381858888f1935050505015156104e157600080fd5b5b50600061064a565b32600160a060020a031660008051602061196283398151915260008060405191825260208201526040908101905180910390a25060015b95945050505050565b73eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee81565b60008183600160a060020a031663dd62ed3e333060006040516020015260405160e060020a63ffffffff8516028152600160a060020a03928316600482015291166024820152604401602060405180830381600087803b15156106cd57600080fd5b6102c65a03f115156106de57600080fd5b5050506040518051905010156107a65732600160a060020a031660008051602061196283398151915264085000000185600160a060020a031663dd62ed3e333060006040516020015260405160e060020a63ffffffff8516028152600160a060020a03928316600482015291166024820152604401602060405180830381600087803b151561076c57600080fd5b6102c65a03f1151561077d57600080fd5b5050506040518051905060405191825260208201526040908101905180910390a25060006108c1565b82600160a060020a03166323b872dd33308560006040516020015260405160e060020a63ffffffff8616028152600160a060020a0393841660048201529190921660248201526044810191909152606401602060405180830381600087803b151561081057600080fd5b6102c65a03f1151561082157600080fd5b5050506040518051905015156108795732600160a060020a031660008051602061196283398151915264085000000285600160a060020a031660405191825260208201526040908101905180910390a25060006108c1565b7f2d0c0a8842b9944ece1495eb61121621b5e36bd6af3bba0318c695f525aef79f8383604051600160a060020a03909216825260208201526040908101905180910390a15060015b92915050565b60008060006108d461194a565b6002600087876040516c01000000000000000000000000600160a060020a039384168102825291909216026014820152602801604051908190039020815260208101919091526040908101600020908051908101604052815481526001909101546020820152600092509050600160a060020a03851673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee14156109775730600160a060020a03163191506109eb565b84600160a060020a03166370a082313060006040516020015260405160e060020a63ffffffff8416028152600160a060020a039091166004820152602401602060405180830381600087803b15156109ce57600080fd5b6102c65a03f115156109df57600080fd5b50505060405180519250505b80602001519250805193505b509250925092565b6000805433600160a060020a03908116911614610a5e5732600160a060020a031660008051602061196283398151915264086000000033600160a060020a031660405191825260208201526040908101905180910390a2506000610c08565b600160a060020a03841673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee1415610ab957600160a060020a03821683156108fc0284604051600060405180830381858888f193505050501515610ab457600080fd5b610b7f565b83600160a060020a031663a9059cbb838560006040516020015260405160e060020a63ffffffff8516028152600160a060020a0390921660048301526024820152604401602060405180830381600087803b1515610b1657600080fd5b6102c65a03f11515610b2757600080fd5b505050604051805190501515610b7f5732600160a060020a031660008051602061196283398151915264086000000186600160a060020a031660405191825260208201526040908101905180910390a2506000610c08565b5b32600160a060020a031660008051602061196283398151915260008060405191825260208201526040908101905180910390a27f56c54ba9bd38d8fd62012e42c7ee564519b09763c426d331b3661b537ead19b2848484604051600160a060020a03938416815260208101929092529091166040808301919091526060909101905180910390a15b9392505050565b600154600160a060020a031681565b600032600160a060020a031660008051602061196283398151915260008060405191825260208201526040908101905180910390a27f2d0c0a8842b9944ece1495eb61121621b5e36bd6af3bba0318c695f525aef79f73eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee34604051600160a060020a03909216825260208201526040908101905180910390a15060015b90565b6000805433600160a060020a03908116911614610d115732600160a060020a031660008051602061196283398151915264083000000033600160a060020a031660405191825260208201526040908101905180910390a2506000610db6565b6001805474ff00000000000000000000000000000000000000001916740100000000000000000000000000000000000000008415150217905532600160a060020a031660008051602061196283398151915260008060405191825260208201526040908101905180910390a27fcd2a11befb642d27dc40a029a06248cc8f351c694afdf524dbcdd619526fd9f282604051901515815260200160405180910390a15060015b919050565b60015474010000000000000000000000000000000000000000900460ff1681565b60008054819033600160a060020a03908116911614610e3e5732600160a060020a031660008051602061196283398151915264082000000033600160a060020a031660405191825260208201526040908101905180910390a26000915061106a565b8215610eaa5785518751141580610e5757508451875114155b80610e6457508351875114155b15610eaa5732600160a060020a0316600080516020611962833981519152640820000001600060405191825260208201526040908101905180910390a26000915061106a565b5b5060005b8651811015611032577ffb173712efe345dcd1cbd1d51dd337765fbb3a609e67b2dae515a937adedcc96878281518110610ee557fe5b90602001906020020151878381518110610efb57fe5b90602001906020020151878481518110610f1157fe5b90602001906020020151878581518110610f2757fe5b90602001906020020151604051600160a060020a0394851681529290931660208301526040808301919091526060820192909252608001905180910390a16040805190810160405280868381518110610f7c57fe5b906020019060200201518152602001858381518110610f9757fe5b90602001906020020151905260026000898481518110610fb357fe5b90602001906020020151898581518110610fc957fe5b906020019060200201516040516c01000000000000000000000000600160a060020a03938416810282529190921602601482015260280160405190819003902081526020810191909152604001600020815181556020820151600190910155505b600101610eaf565b32600160a060020a031660008051602061196283398151915260008060405191825260208201526040908101905180910390a2600191505b5095945050505050565b600054600160a060020a031681565b6000600160a060020a03821673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee14156110bb5750600160a060020a03301631610db6565b81600160a060020a03166370a082313060006040516020015260405160e060020a63ffffffff8416028152600160a060020a039091166004820152602401602060405180830381600087803b151561111257600080fd5b6102c65a03f1151561112357600080fd5b505050604051805190509050610db6565b5b919050565b6000806000831561138b5761115088874361180f565b15156111975732600160a060020a0316600080516020611962833981519152640800000001600060405191825260208201526040908101905180910390a260009250611804565b600160a060020a03881673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee1415611208573487146112035732600160a060020a03166000805160206119628339815191526408000000023460405191825260208201526040908101905180910390a260009250611804565b61138b565b60003411156112515732600160a060020a03166000805160206119628339815191526408000000033460405191825260208201526040908101905180910390a260009250611804565b8688600160a060020a031663dd62ed3e333060006040516020015260405160e060020a63ffffffff8516028152600160a060020a03928316600482015291166024820152604401602060405180830381600087803b15156112b157600080fd5b6102c65a03f115156112c257600080fd5b50505060405180519050101561138b5732600160a060020a03166000805160206119628339815191526408000000048a600160a060020a031663dd62ed3e333060006040516020015260405160e060020a63ffffffff8516028152600160a060020a03928316600482015291166024820152604401602060405180830381600087803b151561135057600080fd5b6102c65a03f1151561136157600080fd5b5050506040518051905060405191825260208201526040908101905180910390a260009250611804565b5b5b5b6113998887436118a5565b9150670de0b6b3a76400008783025b0490508015156113f35732600160a060020a0316600080516020611962833981519152640800000005600060405191825260208201526040908101905180910390a260009250611804565b600160a060020a03861673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee141561146f578030600160a060020a031631101561146a5732600160a060020a03166000805160206119628339815191526408000000068360405191825260208201526040908101905180910390a260009250611804565b611531565b8086600160a060020a03166370a082313060006040516020015260405160e060020a63ffffffff8416028152600160a060020a039091166004820152602401602060405180830381600087803b15156114c757600080fd5b6102c65a03f115156114d857600080fd5b5050506040518051905010156115315732600160a060020a031660008051602061196283398151915264080000000788600160a060020a031660405191825260208201526040908101905180910390a260009250611804565b5b600160a060020a03881673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee1461162a5787600160a060020a03166323b872dd33308a60006040516020015260405160e060020a63ffffffff8616028152600160a060020a0393841660048201529190921660248201526044810191909152606401602060405180830381600087803b15156115c057600080fd5b6102c65a03f115156115d157600080fd5b50505060405180519050151561162a5732600160a060020a03166000805160206119628339815191526408000000088a600160a060020a031660405191825260208201526040908101905180910390a260009250611804565b5b600160a060020a03861673eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee14156116ca57600160a060020a03851681156108fc0282604051600060405180830381858888f1935050505015156116c55732600160a060020a031660008051602061196283398151915264080000000987600160a060020a031660405191825260208201526040908101905180910390a260009250611804565b611791565b85600160a060020a031663a9059cbb868360006040516020015260405160e060020a63ffffffff8516028152600160a060020a0390921660048301526024820152604401602060405180830381600087803b151561172757600080fd5b6102c65a03f1151561173857600080fd5b5050506040518051905015156117915732600160a060020a031660008051602061196283398151915264080000000a87600160a060020a031660405191825260208201526040908101905180910390a260009250611804565b5b32600160a060020a03167fea83add4cfea01dd7d3aae33782a37a6b98fe4b92ff715371be191def51cad0d898989858a604051600160a060020a039586168152602081019490945291841660408085019190915260608401919091529216608082015260a001905180910390a2600192505b505095945050505050565b600061181961194a565b6002600086866040516c01000000000000000000000000600160a060020a039384168102825291909216026014820152602801604051908190039020815260208101919091526040908101600020908051908101604052815481526001909101546020820152905080511515611892576000915061189d565b828160200151101591505b509392505050565b60006118af61194a565b6002600086866040516c01000000000000000000000000600160a060020a039384168102825291909216026014820152602801604051908190039020815260208101919091526040908101600020908051908101604052815481526001909101546020820152905080511515611928576000915061189d565b828160200151101561193d576000915061189d565b805191505b509392505050565b604080519081016040526000808252602082015290560005d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36fa165627a7a723058204c1f5a1e4b08fe2837e3cf601a4fb9cfabc159e97ca221c031a984600debda630029",
+  "networks": {
+    "42": {
+      "events": {
+        "0x05d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "error",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "errorInfo",
+              "type": "uint256"
+            }
+          ],
+          "name": "ErrorReport",
+          "type": "event"
+        },
+        "0xea83add4cfea01dd7d3aae33782a37a6b98fe4b92ff715371be191def51cad0d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "sourceAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destToken",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "destAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destAddress",
+              "type": "address"
+            }
+          ],
+          "name": "DoTrade",
+          "type": "event"
+        },
+        "0xfb173712efe345dcd1cbd1d51dd337765fbb3a609e67b2dae515a937adedcc96": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "expiryBlock",
+              "type": "uint256"
+            }
+          ],
+          "name": "SetRate",
+          "type": "event"
+        },
+        "0xcd2a11befb642d27dc40a029a06248cc8f351c694afdf524dbcdd619526fd9f2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "enable",
+              "type": "bool"
+            }
+          ],
+          "name": "EnableTrade",
+          "type": "event"
+        },
+        "0x2d0c0a8842b9944ece1495eb61121621b5e36bd6af3bba0318c695f525aef79f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "DepositToken",
+          "type": "event"
+        },
+        "0x56c54ba9bd38d8fd62012e42c7ee564519b09763c426d331b3661b537ead19b2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destination",
+              "type": "address"
+            }
+          ],
+          "name": "Withdraw",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x33fc8252980b182af79e466cfdeb0a24243da3b9",
+      "updated_at": 1509960540527
+    },
+    "1508646405752": {
+      "events": {
+        "0x05d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "error",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "errorInfo",
+              "type": "uint256"
+            }
+          ],
+          "name": "ErrorReport",
+          "type": "event"
+        },
+        "0xea83add4cfea01dd7d3aae33782a37a6b98fe4b92ff715371be191def51cad0d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "sourceAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destToken",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "destAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destAddress",
+              "type": "address"
+            }
+          ],
+          "name": "DoTrade",
+          "type": "event"
+        },
+        "0xfb173712efe345dcd1cbd1d51dd337765fbb3a609e67b2dae515a937adedcc96": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "expiryBlock",
+              "type": "uint256"
+            }
+          ],
+          "name": "SetRate",
+          "type": "event"
+        },
+        "0xcd2a11befb642d27dc40a029a06248cc8f351c694afdf524dbcdd619526fd9f2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "enable",
+              "type": "bool"
+            }
+          ],
+          "name": "EnableTrade",
+          "type": "event"
+        },
+        "0x2d0c0a8842b9944ece1495eb61121621b5e36bd6af3bba0318c695f525aef79f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "DepositToken",
+          "type": "event"
+        },
+        "0x56c54ba9bd38d8fd62012e42c7ee564519b09763c426d331b3661b537ead19b2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destination",
+              "type": "address"
+            }
+          ],
+          "name": "Withdraw",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xd1c41afed6880f1f5ea8d2a2cc651d76bc39ae4a",
+      "updated_at": 1508647868220
+    },
+    "1508992195467": {
+      "events": {
+        "0x05d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "error",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "errorInfo",
+              "type": "uint256"
+            }
+          ],
+          "name": "ErrorReport",
+          "type": "event"
+        },
+        "0xea83add4cfea01dd7d3aae33782a37a6b98fe4b92ff715371be191def51cad0d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "sourceAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destToken",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "destAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destAddress",
+              "type": "address"
+            }
+          ],
+          "name": "DoTrade",
+          "type": "event"
+        },
+        "0xfb173712efe345dcd1cbd1d51dd337765fbb3a609e67b2dae515a937adedcc96": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "expiryBlock",
+              "type": "uint256"
+            }
+          ],
+          "name": "SetRate",
+          "type": "event"
+        },
+        "0xcd2a11befb642d27dc40a029a06248cc8f351c694afdf524dbcdd619526fd9f2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "enable",
+              "type": "bool"
+            }
+          ],
+          "name": "EnableTrade",
+          "type": "event"
+        },
+        "0x2d0c0a8842b9944ece1495eb61121621b5e36bd6af3bba0318c695f525aef79f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "DepositToken",
+          "type": "event"
+        },
+        "0x56c54ba9bd38d8fd62012e42c7ee564519b09763c426d331b3661b537ead19b2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destination",
+              "type": "address"
+            }
+          ],
+          "name": "Withdraw",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x36004e27dfef4c7b4c5c70058c61c9b3047cbce0",
+      "updated_at": 1509027070791
+    },
+    "1509029919280": {
+      "links": {},
+      "events": {
+        "0x05d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "error",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "errorInfo",
+              "type": "uint256"
+            }
+          ],
+          "name": "ErrorReport",
+          "type": "event"
+        },
+        "0xea83add4cfea01dd7d3aae33782a37a6b98fe4b92ff715371be191def51cad0d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "sourceAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destToken",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "destAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destAddress",
+              "type": "address"
+            }
+          ],
+          "name": "DoTrade",
+          "type": "event"
+        },
+        "0xfb173712efe345dcd1cbd1d51dd337765fbb3a609e67b2dae515a937adedcc96": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "expiryBlock",
+              "type": "uint256"
+            }
+          ],
+          "name": "SetRate",
+          "type": "event"
+        },
+        "0xcd2a11befb642d27dc40a029a06248cc8f351c694afdf524dbcdd619526fd9f2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "enable",
+              "type": "bool"
+            }
+          ],
+          "name": "EnableTrade",
+          "type": "event"
+        },
+        "0x2d0c0a8842b9944ece1495eb61121621b5e36bd6af3bba0318c695f525aef79f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "DepositToken",
+          "type": "event"
+        },
+        "0x56c54ba9bd38d8fd62012e42c7ee564519b09763c426d331b3661b537ead19b2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destination",
+              "type": "address"
+            }
+          ],
+          "name": "Withdraw",
+          "type": "event"
+        }
+      },
+      "updated_at": 1509030171074
+    },
+    "1509351012249": {
+      "links": {},
+      "events": {
+        "0x05d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "error",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "errorInfo",
+              "type": "uint256"
+            }
+          ],
+          "name": "ErrorReport",
+          "type": "event"
+        },
+        "0xea83add4cfea01dd7d3aae33782a37a6b98fe4b92ff715371be191def51cad0d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "sourceAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destToken",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "destAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destAddress",
+              "type": "address"
+            }
+          ],
+          "name": "DoTrade",
+          "type": "event"
+        },
+        "0xfb173712efe345dcd1cbd1d51dd337765fbb3a609e67b2dae515a937adedcc96": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "expiryBlock",
+              "type": "uint256"
+            }
+          ],
+          "name": "SetRate",
+          "type": "event"
+        },
+        "0xcd2a11befb642d27dc40a029a06248cc8f351c694afdf524dbcdd619526fd9f2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "enable",
+              "type": "bool"
+            }
+          ],
+          "name": "EnableTrade",
+          "type": "event"
+        },
+        "0x2d0c0a8842b9944ece1495eb61121621b5e36bd6af3bba0318c695f525aef79f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "DepositToken",
+          "type": "event"
+        },
+        "0x56c54ba9bd38d8fd62012e42c7ee564519b09763c426d331b3661b537ead19b2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destination",
+              "type": "address"
+            }
+          ],
+          "name": "Withdraw",
+          "type": "event"
+        }
+      },
+      "updated_at": 1509363498038
+    },
+    "1510733929581": {
+      "links": {},
+      "events": {
+        "0x05d2f3e2f3e0a781082873c332729f77c49ee05d757ef3d1e5058fa0d883f36f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "error",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "errorInfo",
+              "type": "uint256"
+            }
+          ],
+          "name": "ErrorReport",
+          "type": "event"
+        },
+        "0xea83add4cfea01dd7d3aae33782a37a6b98fe4b92ff715371be191def51cad0d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "origin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "sourceAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destToken",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "destAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destAddress",
+              "type": "address"
+            }
+          ],
+          "name": "DoTrade",
+          "type": "event"
+        },
+        "0xfb173712efe345dcd1cbd1d51dd337765fbb3a609e67b2dae515a937adedcc96": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "source",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "dest",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "expiryBlock",
+              "type": "uint256"
+            }
+          ],
+          "name": "SetRate",
+          "type": "event"
+        },
+        "0xcd2a11befb642d27dc40a029a06248cc8f351c694afdf524dbcdd619526fd9f2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "enable",
+              "type": "bool"
+            }
+          ],
+          "name": "EnableTrade",
+          "type": "event"
+        },
+        "0x2d0c0a8842b9944ece1495eb61121621b5e36bd6af3bba0318c695f525aef79f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "DepositToken",
+          "type": "event"
+        },
+        "0x56c54ba9bd38d8fd62012e42c7ee564519b09763c426d331b3661b537ead19b2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "destination",
+              "type": "address"
+            }
+          ],
+          "name": "Withdraw",
+          "type": "event"
+        }
+      },
+      "updated_at": 1510739157425
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1510739157425
+}
